@@ -27,6 +27,7 @@ int binary_tree_balance(const binary_tree_t *tree)
 int determine_height(const binary_tree_t *tree)
 {
 	int l, r;
+
 	if (tree)
 	{
 		l = tree->left ? 1 + _hight()
