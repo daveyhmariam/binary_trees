@@ -30,7 +30,8 @@ int determine_height(const binary_tree_t *tree)
 
 	if (tree)
 	{
-		l = tree->left ? 1 + _hight()
+		l = tree->left ? 1 + determine_height(tree->left) : 0;
+		r = tree->right ? 1 + determine_height(tree->right) : 0;
 	}
-
+	return ((l > r) ? l : r);
 }
