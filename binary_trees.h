@@ -45,5 +45,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree);
 int height(const binary_tree_t *tree);
 int _size(const binary_tree_t *tree);
 double power(double base, int exponent);
+binary_tree_t *binary_tree_sibling(binary_tree_t *node);
+
 
 #endif /* _BINARY_TREES_H_ */
