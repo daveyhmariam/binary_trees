@@ -50,6 +50,22 @@ binary_tree_t *binary_tree_uncle(binary_tree_t *node);
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 const binary_tree_t *second);
 int depth(const binary_tree_t *tree);
+void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
 
+/**
+ * struct queue_s - queue structure
+ *
+ * @node: binary tree node
+ * @next: next queue element on line
+ * @prev: previous queue element on line
+ */
+typedef struct queue_s
+{
+	struct queue_s *next;
+	struct queue_s *prev;
+	binary_tree_t *node;
+} queue_t;
+void enqueue(binary_tree_t *node, queue_t **end);
+void dequeue(queue_t **first);
 
 #endif /* _BINARY_TREES_H_ */
