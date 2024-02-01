@@ -10,6 +10,7 @@
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int h, s, sz_prfct;
+
 	if (tree)
 	{
 		h = height(tree);
@@ -68,11 +69,11 @@ int _size(const binary_tree_t *tree)
 
 double power(double base, int exponent)
 {
-    if (exponent == 0) {
-        return 1.0;
-    } else if (exponent > 0) {
-        return base * power(base, exponent - 1);
-    } else {
-        return 1.0 / power(base, -exponent);
-    }
+	if (exponent == 0)
+		return (1.0);
+	else if (exponent > 0)
+		return (base * power(base, exponent - 1));
+	else
+		return (1.0 / power(base, -exponent));
+
 }
