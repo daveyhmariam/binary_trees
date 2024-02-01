@@ -67,5 +67,7 @@ typedef struct queue_s
 } queue_t;
 void enqueue(binary_tree_t *node, queue_t **end);
 void dequeue(queue_t **first);
+int binary_tree_is_complete(const binary_tree_t *tree);
+int check_complete(binary_tree_t *tree, int idx, int s);
 
 #endif /* _BINARY_TREES_H_ */
