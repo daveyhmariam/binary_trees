@@ -12,68 +12,42 @@
 
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-	queue_t *front, *end, *pass;
+	binary_tree_t **queue, *cur;
+	int s, front = 0, end = 0;
 
-	if (!tree || !func)
-		return;
-	enqueue((binary_tree_t *)tree, &end);
-	front = end;
-	pass = front;
-	while (pass)
+
+	s = _size(tree);
+	queue = (binary_tree_t **) malloc(sizeof(binary_tree_t *) * s);
+	queue[end++] = (binary_tree_t *) tree;
+	while (front < end)
 	{
-		if (pass->node->left)
-			enqueue(pass->node->left, &end);
-		if (pass->node->right)
-			enqueue(pass->node->right, &end);
-		pass = pass->next;
+		cur = queue[front++];
+		func(cur->n);
+		if (cur->left)
+			queue[end++] = cur->left;
+		if (cur->right)
+			queue[end++] = cur->right;
 	}
-	while (front)
-	{
-		func(front->node->n);
-		dequeue(&front);
-	}
+	free(queue);
 
 }
 
-
 /**
- * enqueue - adds nodes into queue
- * @node: binary tree node
- * @end: end of queue
- * Return: Nothing
+ * _size - measures the size of a binary tree
+ * @tree: pointer to the root node of the tree to measure the size
+ * Return: number of nodes (size) of binaary tree
+ *			If tree is NULL, the function must return 0
  */
-void enqueue(binary_tree_t *node, queue_t **end)
+
+int _size(const binary_tree_t *tree)
 {
-	queue_t *new;
+	size_t size = 0;
 
-	if (node == NULL)
-		return;
-	new = (queue_t *) malloc(sizeof(queue_t));
-	if (new)
-	{
-		new->node = node;
-		new->next = NULL;
-		new->prev = NULL;
-		if (*end)
-		{
-			new->prev = *end;
-			(*end)->next = new;
-		}
-		(*end) = new;
-	}
-}
+	if (!tree)
+		return (0);
 
-
-/**
- * dequeue - pops nodes out of queue
- * @front: front of queue
- * Return: Nothing
- */
-void dequeue(queue_t **front)
-{
-	queue_t *_free;
-
-	_free = (*front);
-	(*front) = (*front)->next;
-	free(_free);
+	size += _size(tree->left);
+	size += _size(tree->right);
+	size++;
+	return (size);
 }
