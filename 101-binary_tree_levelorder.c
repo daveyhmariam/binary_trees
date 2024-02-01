@@ -14,7 +14,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
 	queue_t *front, *end, *pass;
 
-	if (!tree)
+	if (!tree || !func)
 		return;
 	enqueue((binary_tree_t *)tree, &end);
 	front = end;
